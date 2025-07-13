@@ -16,7 +16,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         'mkdocs>=1.6.1',
-        'mkdocs-audiotag>=0.0.1'
+        'mkdocs-audiotag>=0.0.1',
+        'beautifulsoup4>=4.13.4'
     ],
     include_package_data=True,
     python_requires='>=3.7',
