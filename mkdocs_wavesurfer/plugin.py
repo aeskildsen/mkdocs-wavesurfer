@@ -93,12 +93,11 @@ surfer{num}.on('click', () => {{
             soup.head.append(lib_script)
 
             surfer_script = soup.new_tag('script')
-            #surfer_script['defer'] = ''
             surfer_script.string = f"""
 document.addEventListener('DOMContentLoaded', () => {{
 {js}
 }});
 """
-            soup.head.append(surfer_script)
+            soup.body.append(surfer_script)
 
         return str(soup)
