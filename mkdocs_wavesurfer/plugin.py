@@ -88,16 +88,19 @@ surfer{num}.on('click', () => {{
 }})
 """
         if surfers_data:
-            lib_script= soup.new_tag('script')
-            lib_script['src'] = "https://unpkg.com/wavesurfer.js@7"
-            soup.head.append(lib_script)
-
             surfer_script = soup.new_tag('script')
             surfer_script.string = f"""
-window.addEventListener('load', event => {{
+function initSurfers() {{
 {js}
 }});
 """
+#window.addEventListener('load', event => {{
             soup.body.append(surfer_script)
+
+            lib_script= soup.new_tag('script')
+            lib_script['src'] = "https://unpkg.com/wavesurfer.js@7"
+            lib_script['onload'] = "initSurfers()"
+            soup.body.append(lib_script)
+
 
         return str(soup)
