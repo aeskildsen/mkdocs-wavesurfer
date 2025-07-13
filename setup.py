@@ -15,7 +15,8 @@ setup(
     license='MIT',
     packages=find_packages(),
     install_requires=[
-        'mkdocs>=1.6.1'
+        'mkdocs>=1.6.1',
+        'mkdocs-audiotag>=0.0.1'
     ],
     include_package_data=True,
     python_requires='>=3.7',
