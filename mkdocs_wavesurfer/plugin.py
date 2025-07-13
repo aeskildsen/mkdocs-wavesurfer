@@ -94,7 +94,7 @@ surfer{num}.on('click', () => {{
 
             surfer_script = soup.new_tag('script')
             surfer_script.string = f"""
-document.addEventListener('DOMContentLoaded', () => {{
+window.addEventListener('load', event => {{
 {js}
 }});
 """
