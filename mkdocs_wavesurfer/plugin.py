@@ -64,7 +64,6 @@ class Wave(mkdocs.plugins.BasePlugin[WaveConfig]):
     
     def on_post_page(self, output, page, config):
         soup = BS(output, 'html.parser')
-        
         # Find all audio-container divs
         # Get the file path from the contained audio source element
         # Add a wavesurfer script element to the list
@@ -73,8 +72,9 @@ class Wave(mkdocs.plugins.BasePlugin[WaveConfig]):
             #for source_el in div.find_ass(src=True):
             #    surfers_data.append((div['id'], div.find('audio')['id'], source_el['src']))
             surfers_data.append((div['id'], div.find('audio')['id'], div.find('source')['src']))
-
+        print(surfers_data)
         js = config['ws_config_obj']
+        js += f"console.log('RUNNING!!!')\n"
         for container_id, audio_id, src_path in surfers_data:
             num = re.search(r'\d+', container_id).group(0)
             js += f"""
@@ -90,7 +90,7 @@ surfer{num}.on('click', () => {{
         if surfers_data:
             surfer_script = soup.new_tag('script')
             surfer_script.string = f"""
-function initSurfers() {{
+window.addEventListener('load', () => {{
 {js}
 }});
 """
@@ -99,8 +99,7 @@ function initSurfers() {{
 
             lib_script= soup.new_tag('script')
             lib_script['src'] = "https://unpkg.com/wavesurfer.js@7"
-            lib_script['onload'] = "initSurfers()"
-            soup.body.append(lib_script)
+            soup.head.append(lib_script)
 
 
         return str(soup)
