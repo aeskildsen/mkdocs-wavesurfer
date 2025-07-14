@@ -5,7 +5,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setup(
     name='mkdocs-wavesurfer',
-    version='0.0.4',
+    version='0.0.5',
     author='Anders Eskildsen',
     author_email='dev@anderseskildsen.eu',
     url='https://github.com/aeskildsen/mkdocs-wavesurfer',

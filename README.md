@@ -2,7 +2,7 @@
 
 This is a plugin for [mkdocs](https://www.mkdocs.org/) that adds a nice waveform display for `<audio>` elements using [wavesurfer.js](https://wavesurfer.xyz/).
 
-This plugin depends on [mkdocs-audiotag](https://github.com/aeskildsen/mkdocs-audiotag).
+This plugin requires [mkdocs-audiotag](https://github.com/aeskildsen/mkdocs-audiotag).
 
 ## Quick start
 
@@ -43,17 +43,21 @@ plugins:
   - mkdocs-audiotag
   - mkdocs-wavesurfer:
       height: 200
-      wave-color: "#0fcb2bff"
-      progress-color: rgb(0, 100, 0)
-      cursor-color: red
-      cursor-width: 10
-      bar-width: 3
-      bar-gap: 1
+      wave_color: "#0fcb2bff"
+      progress_color: rgb(0, 100, 0)
+      cursor_color: red
+      cursor_width: 10
+      bar_width: 5
+      bar_gap: 2
 ```
 
 ![Waveform canvas generated with the configuration shown above](./waveform-wavesurfer.png)
 
-You only need to specify the options you want to override, as others will use default values. Colors can be specified using hex values, rgb or color names as in CSS.
+Note:
+
+- **Defaults:** You only need to specify the options you want to override, as others will use default values.
+- **Colors:** Can be specified using hex values, rgb or color names as in CSS, as shown in the example above.
+- **Case:** We use snake case in `mkdocs.yml` for consistency, as opposed to the wavesurfer.js docs which work with javascript and camel case.
 
 ### Use with mkdocs-material
 
@@ -63,16 +67,16 @@ The plugin can adapt to the color set by [mkdocs-material](https://squidfunk.git
 plugins:
   - mkdocs-audiotag
   - mkdocs-wavesurfer:
-      use-mkdocs-material-color: true
+      use_mkdocs-material_color: true
 ```
 
-When this is enabled, the options `wave-color` and `progress-color` are overwritten, and the plugin will log a warning.
+When this is enabled, the options `wave_color` and `progress_color` are overwritten, and the plugin will log a warning if they are present in `mkdocs.yml`.
 
 ### Autoconfigured options
 
-Please note that the following options get populated automatically by the plugin and cannot be specified in the config:
+Please note that the following wavesurfer options are populated automatically by the plugin and cannot be specified in the config:
 
-- `media-controls`
+- `media_controls`
 - `media`
 - `url`
 - `container`
@@ -88,8 +92,38 @@ plugins:
 
 ### Default config values
 
+### Default config values
 
+Below are the default configuration values:
 
+```yaml
+plugins:
+  - mkdocs-wavesurfer:
+      height: 128
+      width: "100%"
+      split_channels: false
+      normalize: false
+      wave_color: "#ff4e00"
+      progress_color: "#dd5e98"
+      cursor_color: "#ddd5e9"
+      cursor_width: 2
+      bar_width: null
+      bar_gap: null
+      bar_radius: null
+      bar_height: null
+      bar_align: ""
+      min_px_per_sec: 1
+      fill_parent: true
+      autoplay: false
+      interact: true
+      drag_to_seek: false
+      hide_scrollbar: false
+      audio_rate: 1.0
+      auto_scroll: true
+      auto_center: true
+      sample_rate: 8000
+      use_mkdocs_material_color: false
+```
 
 ## License
 
