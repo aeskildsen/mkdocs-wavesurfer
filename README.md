@@ -18,7 +18,7 @@ pip install git+https://github.com/aeskildsen/mkdocs-wavesurfer.git#egg=mkdocs-w
 
 ```yaml
 plugins:
-  - mkdocs-audiotag # required!
+  - mkdocs-audiotag # required
   - mkdocs-wavesurfer
 ```
 
@@ -30,30 +30,49 @@ As described on the [mkdocs-audiotag readme](https://github.com/aeskildsen/mkdoc
 ![audio/ogg](my-audio-file.ogg)
 ```
 
+The waveform will be shown below the audio element's controls.
+
 ## Configuration
 
 You can tweak how *wavesurfer.js* displays the waveform using a range of configuration options. See the [wavesurfer.js documentation](https://wavesurfer.xyz/docs/types/wavesurfer.WaveSurferOptions) and the very nice [visual examples](https://wavesurfer.xyz/examples/?all-options.js) for a full description.
 
-Add your options under the `mkdocs-wavesurfer` plugin in your `mkdocs.yml`. You only need to specify the options you want to override. All others will use default values.
+Add your options under the `mkdocs-wavesurfer` plugin in your `mkdocs.yml`.
 
 ```yaml
 plugins:
   - mkdocs-audiotag
   - mkdocs-wavesurfer:
-      height: 80
-      waveColor: "#0fcb2bff"
-      progressColor: "darkblue"
-      barWidth: 3
-      barGap: 1
+      height: 200
+      wave-color: "#0fcb2bff"
+      progress-color: rgb(0, 100, 0)
+      cursor-color: red
+      cursor-width: 10
+      bar-width: 3
+      bar-gap: 1
 ```
 
 ![Waveform canvas generated with the configuration shown above](./waveform-wavesurfer.png)
 
+You only need to specify the options you want to override, as others will use default values. Colors can be specified using hex values, rgb or color names as in CSS.
+
+### Use with mkdocs-material
+
+The plugin can adapt to the color set by [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) for a visually coherent style.
+
+```yaml
+plugins:
+  - mkdocs-audiotag
+  - mkdocs-wavesurfer:
+      use-mkdocs-material-color: true
+```
+
+When this is enabled, the options `wave-color` and `progress-color` are overwritten, and the plugin will log a warning.
+
 ### Autoconfigured options
 
-Please note that the following options get populated automatically by the plugin:
+Please note that the following options get populated automatically by the plugin and cannot be specified in the config:
 
-- `mediaControls`
+- `media-controls`
 - `media`
 - `url`
 - `container`
@@ -66,6 +85,11 @@ plugins:
       controls: false
   - mkdocs-wavesurfer
 ```
+
+### Default config values
+
+
+
 
 ## License
 
