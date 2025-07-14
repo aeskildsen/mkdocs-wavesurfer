@@ -1,17 +1,15 @@
 # mkdocs-wavesurfer
 
-This is a plugin for [mkdocs](https://www.mkdocs.org/) that adds a nice waveform display for `<audio>` elements using [wavesurfer.js](https://wavesurfer.xyz/).
+This is a plugin for [mkdocs](https://www.mkdocs.org/) that adds a waveform display for `<audio>` elements using [wavesurfer.js](https://wavesurfer.xyz/).
 
-This plugin requires [mkdocs-audiotag](https://github.com/aeskildsen/mkdocs-audiotag).
+This plugin only works when [mkdocs-audiotag](https://github.com/aeskildsen/mkdocs-audiotag) is also installed and enabled.
 
 ## Quick start
 
 ### Install the plugin
 
-This package is not published on PyPi (yet), so we install from GitHub:
-
 ```shell
-pip install git+https://github.com/aeskildsen/mkdocs-wavesurfer.git#egg=mkdocs-wavesurfer
+pip install mkdocs-wavesurfer
 ```
 
 ### Enable the plugin in mkdocs.yml
@@ -22,7 +20,7 @@ plugins:
   - mkdocs-wavesurfer
 ```
 
-### Embed an audio file
+### Embed an audio file in markdown source
 
 As described on the [mkdocs-audiotag readme](https://github.com/aeskildsen/mkdocs-audiotag).
 
@@ -56,8 +54,8 @@ plugins:
 Note:
 
 - **Defaults:** You only need to specify the options you want to override, as others will use default values.
-- **Colors:** Can be specified using hex values, rgb or color names as in CSS, as shown in the example above.
-- **Case:** We use snake case in `mkdocs.yml` for consistency, as opposed to the wavesurfer.js docs which work with javascript and camel case.
+- **Colors:** Can be specified as in CSS using hex values, rgb(), or color names, as shown in the example above.
+- **Case:** We use snake case in `mkdocs.yml` for consistency, as opposed to the wavesurfer.js docs which use javascript and camel case.
 
 ### Use with mkdocs-material
 
@@ -72,7 +70,7 @@ plugins:
 
 When this is enabled, the options `wave_color` and `progress_color` are overwritten, and the plugin will log a warning if they are present in `mkdocs.yml`.
 
-### Autoconfigured options
+### Autopopulated options
 
 Please note that the following wavesurfer options are populated automatically by the plugin and cannot be specified in the config:
 
@@ -89,8 +87,6 @@ plugins:
       controls: false
   - mkdocs-wavesurfer
 ```
-
-### Default config values
 
 ### Default config values
 

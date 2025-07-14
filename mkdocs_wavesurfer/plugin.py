@@ -147,11 +147,12 @@ window.addEventListener('load', e => {{
 {js}
 }});
 """
-            soup.body.append(surfer_script)
+            html = output.replace('</body>', str(surfer_script) + '\n</body>')
+            # soup.body.append()
 
             # inject the wavesurfer library at the end of the head element
             lib_script = soup.new_tag('script')
             lib_script['src'] = "https://unpkg.com/wavesurfer.js@7"
-            soup.head.append(lib_script)
+            html = html.replace('</head>', str(lib_script) + '\n</head>')
 
-        return str(soup)
+        return html
