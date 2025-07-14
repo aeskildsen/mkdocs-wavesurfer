@@ -80,6 +80,7 @@ class Wave(mkdocs.plugins.BasePlugin[WaveConfig]):
     
     def on_post_page(self, output, page, config):
         soup = BS(output, 'html.parser')
+        html = output
 
         # find data on audio elements - container and element ids + source paths
         surfers_data = []
@@ -147,7 +148,7 @@ window.addEventListener('load', e => {{
 {js}
 }});
 """
-            html = output.replace('</body>', str(surfer_script) + '\n</body>')
+            html = html.replace('</body>', str(surfer_script) + '\n</body>')
             # soup.body.append()
 
             # inject the wavesurfer library at the end of the head element
